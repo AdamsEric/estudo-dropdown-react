@@ -7,10 +7,22 @@ const DropdownStyled = styled('div') `
   .dropdown {
     position: relative;
     display: inline-block;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
   }
 
   .dropdown-toggle {
     cursor: pointer;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
   }
 
   .dropdown-menu {
@@ -29,6 +41,7 @@ const DropdownStyled = styled('div') `
 `
 
 interface IDropdownProps {
+  // Id do dropdown. Deve ser um identificador único
   id: string,
   children: ReactElement | ReactFragment
 }
@@ -37,34 +50,41 @@ const Dropdown = (props: IDropdownProps) => {
   const [active, setActive] = useState<boolean>(false)
 
   useEffect(() => {
-    setActive(false)
-  }, [])
-
-  useEffect(() => {
-    window.onclick = function(event) {
+    const onClick = (event: any) => {
       if (event && event.target) {
         const target = (event.target as Element)
         if (!target.matches(`#${props.id}`)) {
           setActive(false)
         }
+      } else {
+        setActive(false)
       }
     }
+
+    if (active) {
+      window.addEventListener('click', onClick)
+    }
+
+    return () => {
+      window.removeEventListener('click', onClick)
+    }
+  }, [props.id, active])
+
+  useEffect(() => {
+    
   }, [props.id])
 
   return (
   <DropdownStyled className={`dropdown ${active ? 'active' : ''}`}>
-    <>
-      <div
-        id={props.id}
-        onClick={() => setActive(!active)}
-        className='dropdown-toggle'
-        style={{ textAlign: 'right' }}>
-          Dropdown
-        </div>
-      <div className="dropdown-menu">
-        {props.children}
+    <div className='dropdown-toggle'
+      id={props.id}
+      onClick={() => setActive(!active)}
+      style={{ textAlign: 'right' }}>
+        Dropdown
       </div>
-    </>
+    <div className="dropdown-menu">
+      {props.children}
+    </div>
   </DropdownStyled>
   )
 }

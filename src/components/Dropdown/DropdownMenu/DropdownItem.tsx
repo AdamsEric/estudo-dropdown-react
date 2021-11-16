@@ -7,12 +7,6 @@ const DropdownItemStyled = styled('div')`
   text-decoration: none;
   display: block;
   cursor: pointer;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
 
   &:hover {background-color: #f1f1f1;}
 `

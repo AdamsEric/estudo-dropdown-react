@@ -12,6 +12,16 @@ function App() {
           Teste
         </Dropdown.Item>
       </Dropdown>
+
+      <Dropdown id='teste-dropdown-2'>
+        <Dropdown.Item onClick={() => console.log('click')}>
+          Teste
+        </Dropdown.Item>
+
+        <Dropdown.Item onClick={() => console.log('click')}>
+          Teste
+        </Dropdown.Item>
+      </Dropdown>
     </div>
   );
 }
