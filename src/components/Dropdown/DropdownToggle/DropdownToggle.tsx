@@ -14,8 +14,7 @@ const DropdownToggleStyled = styled('div')`
 `
 
 interface DropdownToggleProps {
-  id: string,
-  children: ReactElement | ReactFragment
+  children?: ReactElement | ReactFragment
 }
 
 const DropdownToggle = (props: DropdownToggleProps) => {
@@ -23,10 +22,11 @@ const DropdownToggle = (props: DropdownToggleProps) => {
 
   return (
     <DropdownToggleStyled className='dropdown-toggle'
-      id={props.id}
+      id={context.id}
       onClick={() => context.setActive(!context.active)}
       style={{ textAlign: 'right' }}>
-        {props.children}
+      {props.children && (<div>{props.children}</div>)}
+      {!props.children && (<div>Sem children</div>)}
     </DropdownToggleStyled>
   )
 }

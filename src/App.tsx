@@ -4,7 +4,7 @@ function App() {
   return (
     <div className="App">
       <Dropdown id='teste-dropdown'>
-        <Dropdown.Toggle id='teste-dropdown'>
+        <Dropdown.Toggle>
           Teste
         </Dropdown.Toggle>
 
@@ -20,9 +20,7 @@ function App() {
       </Dropdown>
 
       <Dropdown id='teste-dropdown'>
-        <Dropdown.Toggle id='teste-dropdown'>
-          Teste
-        </Dropdown.Toggle>
+        <Dropdown.Toggle />
 
         <Dropdown.Menu>
           <Dropdown.Item onClick={() => console.log('click')}>
