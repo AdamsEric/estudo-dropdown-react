@@ -4,23 +4,27 @@ function App() {
   return (
     <div className="App">
       <Dropdown id='teste-dropdown'>
-        <Dropdown.Item onClick={() => console.log('click')}>
-          Teste
-        </Dropdown.Item>
+        <Dropdown.Menu>
+          <Dropdown.Item onClick={() => console.log('click')}>
+            Teste
+          </Dropdown.Item>
 
-        <Dropdown.Item onClick={() => console.log('click')}>
-          Teste
-        </Dropdown.Item>
+          <Dropdown.Item onClick={() => console.log('click')}>
+            Teste
+          </Dropdown.Item>
+        </Dropdown.Menu>
       </Dropdown>
 
       <Dropdown id='teste-dropdown-2'>
-        <Dropdown.Item onClick={() => console.log('click')}>
-          Teste
-        </Dropdown.Item>
+        <Dropdown.Menu>
+          <Dropdown.Item onClick={() => console.log('click')}>
+            Teste
+          </Dropdown.Item>
 
-        <Dropdown.Item onClick={() => console.log('click')}>
-          Teste
-        </Dropdown.Item>
+          <Dropdown.Item onClick={() => console.log('click')}>
+            Teste
+          </Dropdown.Item>
+        </Dropdown.Menu>
       </Dropdown>
     </div>
   );

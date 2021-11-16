@@ -2,6 +2,7 @@ import { useState, useEffect, ReactElement, ReactFragment } from 'react'
 import styled from 'styled-components'
 
 import DropdownItem from './DropdownItem/DropdownItem'
+import DropdownMenu from './DropdownMenu/DropdownMenu'
 
 const DropdownStyled = styled('div') `
   .dropdown {
@@ -23,16 +24,6 @@ const DropdownStyled = styled('div') `
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-  }
-
-  .dropdown-menu {
-    display: none;
-    position: absolute;
-    right: 0;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
   }
 
   &.active .dropdown-menu {
@@ -82,13 +73,12 @@ const Dropdown = (props: IDropdownProps) => {
       style={{ textAlign: 'right' }}>
         Dropdown
       </div>
-    <div className="dropdown-menu">
-      {props.children}
-    </div>
+    {props.children}
   </DropdownStyled>
   )
 }
 
 Dropdown.Item = DropdownItem
+Dropdown.Menu = DropdownMenu
 
 export default Dropdown
