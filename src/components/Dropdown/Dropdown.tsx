@@ -1,23 +1,26 @@
-import { useState, useEffect, ReactElement, ReactFragment } from 'react'
+import { useState, useEffect, createContext, ReactElement, ReactFragment } from 'react'
 import styled from 'styled-components'
 
 import DropdownItem from './DropdownItem/DropdownItem'
 import DropdownMenu from './DropdownMenu/DropdownMenu'
+import DropdownToggle from './DropdownToggle/DropdownToggle'
+
+interface IDropdownContext {
+  id?: string,
+  active: boolean,
+  setActive: Function
+}
+
+export const DropdownContext = createContext<IDropdownContext>({
+  id: undefined,
+  active: false,
+  setActive: () => {}
+})
 
 const DropdownStyled = styled('div') `
   .dropdown {
     position: relative;
     display: inline-block;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-  }
-
-  .dropdown-toggle {
-    cursor: pointer;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -66,19 +69,16 @@ const Dropdown = (props: IDropdownProps) => {
   }, [props.id])
 
   return (
-  <DropdownStyled className={`dropdown ${active ? 'active' : ''}`}>
-    <div className='dropdown-toggle'
-      id={props.id}
-      onClick={() => setActive(!active)}
-      style={{ textAlign: 'right' }}>
-        Dropdown
-      </div>
-    {props.children}
-  </DropdownStyled>
+  <DropdownContext.Provider value={{id: props.id, active, setActive}}>
+    <DropdownStyled className={`dropdown ${active ? 'active' : ''}`}>
+      {props.children}
+    </DropdownStyled>
+  </DropdownContext.Provider>
   )
 }
 
-Dropdown.Item = DropdownItem
+Dropdown.Toggle = DropdownToggle
 Dropdown.Menu = DropdownMenu
+Dropdown.Item = DropdownItem
 
 export default Dropdown
